@@ -1,0 +1,66 @@
+# used to create a new host group. This host group is then used to wait for each instance to respond to the public IP SSH.
+---
+- hosts: localhost
+  vars:
+         XadminUsername: "{{ lookup('file', '~/.ocpazure/adminUsername') }}"
+         XadminPassword: "{{ lookup('file', '~/.ocpazure/adminPassword') }}"
+         XsshKeyData: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+         XRHNUserName:   "{{ lookup('file', '~/.ocpazure/RHNUserName') }}"
+         XRHNPassword:   "{{ lookup('file', '~/.ocpazure/RHNPassword') }}"
+         XSubscriptionPoolId: "{{ lookup('file', '~/.ocpazure/SubscriptionPoolId') }}"
+         XsshPrivateData: "{{ lookup('file', '~/.ocpazure/sshPrivateData') }}"
+         XaadClientId:   "{{ lookup('file', '~/.ocpazure/aadClientId') }}"
+         XaadClientSecret:   "{{ lookup('file', '~/.ocpazure/aadClientSecret') }}"
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Destroy Azure Deploy
+      azure_rm_deployment:
+        state: absent
+        resource_group_name: gswans
+
+    - name: Destroy Azure Deploy
+      azure_rm_deployment:
+        state: absent
+        resource_group_name: gswan
+
+    - name: Create Azure Deploy
+      azure_rm_deployment:
+        state: present
+        resource_group_name: gswans
+        parameters:
+          adminUsername:
+            value: "{{ XadminUsername }}"
+          adminPassword:
+            value: "{{ XadminPassword }}"
+          sshKeyData:
+            value: "{{ XsshKeyData }}"
+          WildcardZone:
+            value: gswwebx
+          numberOfNodes:
+            value: 3
+          image:
+            value: rhel
+          masterVMSize:
+            value: Standard_DS3_v2
+          infranodeVMSize:
+            value: Standard_DS3_v2
+          nodeVMSize:
+            value: Standard_DS12_v2
+          RHNUserName:
+            value: "{{ XRHNUserName }}"
+          RHNPassword:
+            value: "{{ XRHNPassword }}"
+          SubscriptionPoolId:
+            value: "{{ XSubscriptionPoolId }}"
+          sshPrivateData:
+            value: "{{ XsshPrivateData }}"
+          aadClientId:
+            value: "{{ XaadClientId }}"
+          aadClientSecret:
+            value: "{{ XaadClientSecret }}"
+          rhsmUsernamePasswordOrActivationKey:
+            value: activationkey
+        template_link: 'https://raw.githubusercontent.com/glennswest/openshift-ansible-contrib/master/reference-architecture/azure-ansible/azuredeploy.json'
+      register: azure
+
