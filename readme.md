@@ -40,10 +40,13 @@ The RHN Pool Id to install the customer.
 Azure credentials are stored in a file at ~/.azure/credentials
 The values may be obtained from the azure cli
 
+```bash
 npm install azure
 azure login
 azure account show
+```
 
+```bash
 dhcp-65-33:.ssh gwest$ azure account show
 info:    Executing command account show 
 data:    Name                        : Acme Inc. 
@@ -58,15 +61,18 @@ data:    User name                   : 22222222-2222-2222-2222-222222222222
 data:     
 info:    account show command OK 
 dhcp-65-33:.ssh gwest$  
+```
 
 
 ### ~/.azure/credentials 
 This file is configured as follows: 
+```bash
 [default] 
 subscription_id=00000000-0000-0000-0000-000000000000 
 client_id=22222222-2222-2222-2222-222222222222 
 secret=ServicePrinciplePassword 
 tenant=22222222-2222-2222-2222-222222222222 
+```
 
 ## Setup
 Before running the ansible deploy for azure, all the dependencies needed for
@@ -91,9 +97,11 @@ A Script is provided to run the deploy. run.sh
 Or you can directlly type the command.
 
 ### run.sh
+```bash
 ansible-playbook deploy.yml 
-
+```
 ### Sample Output
+```bash
 root@ctl azure]# ./run.sh  
 
 PLAY [localhost] **************************************************************************************************************************************** 
@@ -110,4 +118,5 @@ changed: [localhost]
 PLAY RECAP ********************************************************************************************************************************************** 
 localhost                  : ok=3    changed=2    unreachable=0    failed=0    
 
+```
 
