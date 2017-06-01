@@ -1,3 +1,4 @@
+# make sure everything is installed to use azure ansible module
 yum install python2-pip
 yum install ansible
 yum install python-dev
