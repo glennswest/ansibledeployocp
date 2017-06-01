@@ -72,9 +72,10 @@ tenant=22222222-2222-2222-2222-222222222222
 Before running the ansible deploy for azure, all the dependencies needed for
 azure python api must be installed. A script is provided to do so.
 
+```bash
 ### setup.sh script 
 yum install python2-pip 
-yum install ansible 
+yum install ansible  
 yum install python-dev 
 yum install python-devel 
 yum install openssl-devel 
@@ -82,6 +83,7 @@ pip install packaging
 pip install "azure==2.0.0rc5" 
 pip install msrestazure 
 cat ~/.ssh/id_rsa | base64 > ~/.ocpazure/sshPrivateData 
+```
 
 
 ## Running the deploy
