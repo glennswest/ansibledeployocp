@@ -11,4 +11,4 @@ yum install openssl-devel
 pip install packaging
 pip install "azure==2.0.0rc5"
 pip install msrestazure
-cat ~/.ssh/id_rsa | base64 > ~/.ocpazure/sshPrivateData
+cat ~/.ssh/id_rsa | base64 | tr -d '\n'  > ~/.ocpazure/sshPrivateData
