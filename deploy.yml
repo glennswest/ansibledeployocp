@@ -19,11 +19,6 @@
         state: absent
         resource_group_name: gswans
 
-    - name: Destroy Azure Deploy
-      azure_rm_deployment:
-        state: absent
-        resource_group_name: gswan
-
     - name: Create Azure Deploy
       azure_rm_deployment:
         state: present

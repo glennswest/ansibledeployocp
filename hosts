@@ -1,0 +1,7 @@
+[bastions]
+gswansb.westus.cloudapp.azure.com
+
+[bastions:vars]
+ansible_become=yes
+ansible_ssh_user=glennswest
+remote_password=LambShank1026
