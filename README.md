@@ -13,7 +13,7 @@ ansible-playbook playbooks/prepare.yml
 
 **NOTE:** A serviceprincipal creation is required, see [the OCP on Azure ref. arch. document](https://access.redhat.com/documentation/en-us/reference_architectures/2017/html-single/deploying_red_hat_openshift_container_platform_3_on_microsoft_azure/#azure_active_directory_credentials) and [Use Azure CLI to create a service principal to access resources](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli) for more information.
 
-Azure credentials needs to be stored in a file at `~/.azure/credentials` with the following format:
+Azure credentials needs to be stored in a file at `~/.azure/credentials` with the following format (do not use quotes or double quotes):
 
 ```
 [default]
@@ -28,7 +28,8 @@ Where:
 * `subscription_id` and `tenant` parameters can be obtained from the azure cli:
 
 ```
-npm install azure
+sudo yum install -y nodejs
+sudo npm install -g azure-cli
 azure login
 azure account show
 info:    Executing command account show
