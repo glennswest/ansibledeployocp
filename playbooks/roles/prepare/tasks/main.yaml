@@ -3,7 +3,7 @@
   yum_repository:
     name: epel
     description: EPEL YUM repo
-    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    mirrorlist: https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch
     enabled: no
     gpgcheck: no
   tags: epel
@@ -26,7 +26,6 @@
 
 - name: Install pip required packages
   pip:
-    name: "{{ item.key }}"
-    version: "{{ item.value.version | default(omit) }}"
-  with_dict: "{{ pippackages }}"
+    name: "{{ item }}"
+  with_items: "{{ pippackages }}"
   tags: pip

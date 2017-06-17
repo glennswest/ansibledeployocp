@@ -3,13 +3,13 @@ packages:
   - ansible
   - python-devel
   - openssl-devel
+  - gcc
 
 epelpackages:
   - python2-pip
 
 pippackages:
-  packaging:
-  msrestazure:
-  azure:
-    - version: 2.0.0rc5
+  - "packaging"
+  - "msrestazure"
+  - "azure=2.0.0rc5"
 # https://docs.ansible.com/ansible/guide_azure.html#requirements
