@@ -108,6 +108,8 @@ Optional (default values are set in [playbooks/roles/azure-deploy/default/main.y
 ansible-playbook -e @vars.yaml playbooks/deploy.yml
 ```
 
+**NOTE:** Ansible version should be > 2.1 as the Azure module was included in that version
+
 ### Sample Output
 
 ```bash
