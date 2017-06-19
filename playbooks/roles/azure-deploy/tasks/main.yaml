@@ -40,3 +40,8 @@
         value: "{{ rhsmusernamepasswordoractivationkey }}"
 
   register: azuredeploy
+
+- debug:
+    msg: "Connect to bastion host by: {{ azuredeploy|json_query('deployment.outputs.\"bastion ssh\".value') }}"
+- debug:
+    msg: "OCP console available in {{ azuredeploy|json_query('deployment.outputs.\"openshift Webconsole\".value') }}"
